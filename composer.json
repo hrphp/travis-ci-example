@@ -9,9 +9,9 @@
             "role": "Developer"
         }
     ],
-    "description": "An example of a project that uses Travis CI.",
+    "description": "A repository used to illustrate how Travis CI integrates with projects on GitHub.com.",
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.14",
