@@ -32,7 +32,6 @@ env:
 before_script:
   - composer install
   - phpenv config-add config/hello.ini
-  - mysql -e "CREATE DATABASE IF NOT EXISTS hello_world_test;" -uroot;
 
 # omitting "script:" will default to phpunit
 script:

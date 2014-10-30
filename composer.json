@@ -9,6 +9,7 @@
             "role": "Developer"
         }
     ],
+    "description": "An example of a project that uses Travis CI.",
     "require": {
         "php": ">=5.4.0"
     },
