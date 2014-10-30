@@ -1,0 +1,45 @@
+# see http://about.travis-ci.org/docs/user/languages/php/ for more hints
+language: php
+
+# list any PHP version you want to test against
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - hhvm
+  - hhvm-nightly
+
+# run build against PHP 5.6 and hhvm but allow them to fail
+# http://docs.travis-ci.com/user/build-configuration/#Rows-That-are-Allowed-To-Fail
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: 5.6
+    - php: hhvm
+    - php: hhvm-nightly
+
+branches:
+  only:
+    - master
+    - stable
+
+# optionally specify a list of environments, for example to test different RDBMS
+env:
+  - APPLICATION_ENV=testing
+
+# execute any number of scripts before the test run, custom env's are available as variables
+before_script:
+  - composer install
+  - phpenv config-add config/hello.ini
+  - mysql -e "CREATE DATABASE IF NOT EXISTS hello_world_test;" -uroot;
+
+# omitting "script:" will default to phpunit
+script:
+  - vendor/bin/phpunit --coverage-text
+  - vendor/bin/phpcs --standard=PSR2 --extensions=php src
+
+# configure notifications (email, IRC, campfire etc)
+notifications:
+  email:
+    - guillermoandraefisher@gmail.com
