@@ -23,10 +23,13 @@ class EnglishTest extends \PHPUnit_Framework_TestCase
     {
         $expectedValue = 'Hello, World!';
         $this->assertSame($expectedValue, $this->getEnglish()->getGreeting());
+        $this->english->getDb()->exec('UPDATE messages SET language_id = 2 WHERE language_id = 1');
+        $this->assertNull($this->getEnglish()->getGreeting());
     }
 
-    public function setUp()
+    protected function setUp()
     {
+        exec(sprintf('mysql -u %s -e \'CREATE DATABASE IF NOT EXISTS hello_world_test;\'', HELLO_DB_USERNAME));
         $this->english = new English(new \PDO(HELLO_DB_DSN, HELLO_DB_USERNAME, HELLO_DB_PASSWORD));
         $this->english->getDb()->exec('CREATE TABLE messages (
           language_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -36,10 +39,7 @@ class EnglishTest extends \PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
-        /*
-        $this->getEnglish()->getDb()->exec('DROP TABLE messages');
-        $this->getEnglish()->getDb()->close();
-        */
+        $this->getEnglish()->getDb()->exec('DROP DATABASE hello_world_test');
     }
 
     protected function getEnglish()

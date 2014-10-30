@@ -19,8 +19,8 @@ class English implements LanguageInterface
 
     public function getGreeting()
     {
-        $sql = 'SELECT message FROM hello_world_test WHERE language_id = 1 LIMIT 0,1';
-        foreach ($this->getDb()->query($sql) as $row) {
+        $results = $this->getDb()->query('SELECT message FROM messages WHERE language_id = 1 LIMIT 0,1');
+        foreach ($results as $row) {
             return $row['message'];
         }
     }
