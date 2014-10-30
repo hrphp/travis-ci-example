@@ -16,6 +16,6 @@ class PDOMock extends \PDO
 
     public function query($sql)
     {
-        return [];
+        return array();
     }
 }

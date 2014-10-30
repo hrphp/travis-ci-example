@@ -30,7 +30,7 @@ class HelloWorldTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $language = $this->getMock('\Hello\Language\English', ['getGreeting'], [new PDOMock()]);
+        $language = $this->getMock('\Hello\Language\English', array('getGreeting'), array(new PDOMock()));
         $language->expects($this->any())
             ->method('getGreeting')
             ->will($this->returnValue('Hello, World!'));
