@@ -1,0 +1,26 @@
+{
+    "name": "hrphp/travis-ci-example",
+    "homepage": "http://github.com/hrphp/travis-ci-example",
+    "authors": [
+        {
+            "name": "Guillermo A. Fisher",
+            "email": "guillermoandraefisher@gmail.com",
+            "homepage": "http://github.com/guillermoandrae",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.14",
+        "squizlabs/php_codesniffer": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hello\\": "src/",
+            "HelloTest\\": "tests/"
+        }
+    }
+}
