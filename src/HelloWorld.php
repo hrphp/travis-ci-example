@@ -26,6 +26,6 @@ class HelloWorld
 
     public function getLanguage()
     {
-        return 'you are a moron.';
+        return $this->language;
     }
 }
