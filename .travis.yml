@@ -35,12 +35,13 @@ before_script:
 script:
   - vendor/bin/phpunit --verbose --coverage-clover=coverage.clover
   - vendor/bin/phpcs --standard=PSR2 --extensions=php src
+  - vendor/bin/phpdoc -d src -t docs
 
 # configure notifications (email, IRC, campfire etc)
 notifications:
   email:
     - guillermoandraefisher@gmail.com
 
-after_script:
+after_success:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
